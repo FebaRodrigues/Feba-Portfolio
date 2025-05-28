@@ -8,22 +8,45 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Initialize EmailJS with your public key
+emailjs.init("egenT5AfdT4PxTb0p");
+
 // Form submission handling
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Show loading state
+        const submitBtn = this.querySelector('.submit-btn');
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
         // Get form data
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
         
-        // Here you would typically send the data to a server
-        console.log('Form submitted:', data);
-        
-        // Show success message
-        alert('Thank you for your message! I will get back to you soon.');
-        this.reset();
+        // Send email using EmailJS
+        emailjs.send('service_hp6hef2', 'template_7t88ebp', {
+            name: data.name,
+            email: data.email,
+            message: data.message
+        })
+        .then(function() {
+            // Show success message
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        })
+        .catch(function(error) {
+            // Show error message
+            alert('Sorry, there was an error sending your message. Please try again.');
+            console.error('Error:', error);
+        })
+        .finally(function() {
+            // Reset button state
+            submitBtn.textContent = 'Send Message';
+            submitBtn.disabled = false;
+        });
     });
 }
 
