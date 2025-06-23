@@ -31,23 +31,31 @@ nav {
     font-weight: bold;
     color: #2d3436;
     letter-spacing: 0;
+    margin-right: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
     gap: 2rem;
+    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #2d3436;
     font-weight: 500;
+    font-size: 1rem;
+    padding: 0;
+    border-radius: 0;
     transition: color 0.3s;
 }
 
 .nav-links a:hover, .nav-links a.active {
     color: #0984e3;
+    background: none;
+    box-shadow: none;
 }
 
 /* Hero Section */
@@ -315,33 +323,6 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .hamburger {
-        display: block;
-        cursor: pointer;
-        z-index: 1001;
-    }
-    
-    .hamburger span {
-        display: block;
-        width: 25px;
-        height: 3px;
-        background-color: #2d3436;
-        margin: 5px 0;
-        transition: 0.3s;
-    }
-    
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-    
     .nav-links {
         position: fixed;
         top: 0;
@@ -354,6 +335,7 @@ footer {
         align-items: center;
         transition: 0.3s ease-in-out;
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
     }
     
     .nav-links.active {
@@ -391,19 +373,135 @@ footer {
     }
 }
 
-/* Hamburger menu styles for desktop */
+/* Hamburger menu styles */
 .hamburger {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
+    right: 32px;
+    z-index: 1100;
+    padding: 0;
+    transition: background 0.2s;
+}
+.hamburger:focus {
+    outline: none;
+    background: #f1f2f6;
+    border-radius: 50%;
+}
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #2d3436;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 @media (max-width: 900px) {
-    .about-sections {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 38px;
+        height: 38px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 18px;
+        right: 32px;
+        z-index: 1100;
+        padding: 0;
     }
-    
-    .about-block {
-        padding: 1.5rem 1rem;
+    .hamburger span {
+        display: block;
+        width: 26px;
+        height: 3px;
+        background-color: #2d3436;
+        margin: 4px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75vw;
+        max-width: 350px;
+        height: 100vh;
+        background-color: #fff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s cubic-bezier(.77,0,.18,1);
+        box-shadow: -2px 0 10px rgba(0,0,0,0.08);
+        z-index: 1050;
+        gap: 0;
+        padding: 0;
+    }
+    .nav-links.active {
+        right: 0;
+    }
+    .nav-links li {
+        margin: 0.7rem 0;
+    }
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 0.7rem 1.2rem;
+        border-radius: 6px;
+        transition: background 0.2s, color 0.2s;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    .nav-links a:hover {
+        background: #f1f2f6;
+        color: #6c5ce7;
+    }
+}
+
+@media (min-width: 901px) {
+    .hamburger {
+        display: none !important;
+    }
+    .nav-links {
+        display: flex !important;
+        position: static;
+        height: auto;
+        width: auto;
+        flex-direction: row;
+        background: none;
+        box-shadow: none;
+        gap: 2rem;
+        padding: 0;
     }
 }
 

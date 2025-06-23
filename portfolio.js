@@ -3,10 +3,17 @@ const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const navLinksItems = document.querySelectorAll('.nav-links a');
 
+console.log('Hamburger element:', hamburger);
+console.log('Nav links element:', navLinks);
+console.log('Nav links items:', navLinksItems);
+
 // Toggle hamburger menu
 hamburger.addEventListener('click', () => {
+    console.log('Hamburger clicked!');
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('active');
+    console.log('Hamburger active:', hamburger.classList.contains('active'));
+    console.log('Nav links active:', navLinks.classList.contains('active'));
 });
 
 // Close menu when clicking on a link
